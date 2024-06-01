@@ -1,0 +1,20 @@
+import enfermedades.*
+import personas.*
+describe "test"{
+	const malaria = new EnfermedadInfecciosa(celulasAmenazadas=500)
+	const otitis = new EnfermedadInfecciosa(celulasAmenazadas=100)
+	const lupus = new EnfermedadInfecciosa(celulasAmenazadas=1000)
+	const malariaPulenta = new EnfermedadInfecciosa(celulasAmenazadas=800)	
+	const logan = new Persona(temp=36,celulas=3000000,enfermedades=#{malaria,otitis,lupus})
+	const frank = new Persona(temp=36,celulas=3500000,enfermedades=#{})	
+	test "frank"{
+		frank.contraerEnfermedad(malariaPulenta)
+		assert.that(frank.enfermedades().contains(malariaPulenta))	
+	}
+	test "logan"{	
+		malaria.reproducirse()
+		assert.equals(1000,malaria.celulasAmenazadas())
+		logan.vivirUnDia()			
+	}
+	
+}
